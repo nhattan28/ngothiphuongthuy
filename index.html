@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gương Thần</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: linear-gradient(to bottom, #e0eafc, #cfdef3);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #6a5acd;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #483d8b;
+    }
+
+    #mirror {
+      margin-top: 20px;
+      display: none;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    #mirror img {
+      width: 80vw;
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .blessing {
+      white-space: nowrap;
+      position: absolute;
+      top: 20px;
+      left: 100%;
+      font-size: 18px;
+      font-weight: bold;
+      animation: scrollBlessing 20s linear infinite;
+      color: #8B008B;
+    }
+
+    @keyframes scrollBlessing {
+      0% { left: 100%; }
+      100% { left: -100%; }
+    }
+
+    /* Hoa rơi bằng icon */
+    .petal {
+      position: fixed;
+      top: -30px;
+      font-size: 24px;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="blessing" id="blessingText">
+      ✨ Chúc Ngô Thị Phương Thùy luôn luôn hạnh phúc, khỏe mạnh và thành công trong cuộc sống! ✨
+    </div>
+
+<button id="showButton" onclick="showMirror()">Ấn vào điiii</button>
+
+    <div id="mirror">
+      <h2>✨ Gương thần đây! ✨</h2>
+      <img src="https://scontent.fhan14-3.fna.fbcdn.net/v/t39.30808-1/493679281_122153294354512895_2919874192720171063_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=110&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeG5ar8wBG2DMaHkgy82lGteCF7-7CFgKJ8IXv7sIWAon5UhOzxRqP8oRGlF30SRi7eKoqRQ9bStRQK9ptqCs9bA&_nc_ohc=VnWtpgkUdNYQ7kNvwEYH4Za&_nc_oc=AdmhkVeylPF4OoYLSDHKtajtH2wSwBLdNvPx3USse4FjjhRadBV7TMjjJcYLA-51Ax7DQ7oktA08o36NMiXn2h1D&_nc_zt=24&_nc_ht=scontent.fhan14-3.fna&_nc_gid=x1OMevn1U8FPHduMCk9Eug&oh=00_AfJE7xAObOgACBsjE06GYoisg5FPfzgm6MIYIgQyAjgb2w&oe=682B9119" alt="Gương thần">
+    </div>
+  </div>
+
+  <script>
+function showMirror() {
+  document.getElementById("mirror").style.display = "block";
+  document.getElementById("showButton").style.display = "none"; // Ẩn nút
+  startEmojiPetals();
+}
+
+
+    function startPetals() {
+      const icons = ["🌸", "🌺", "🌼", "💮", "🌷"];
+      const num = 30;
+      for (let i = 0; i < num; i++) {
+        const petal = document.createElement("div");
+        petal.className = "petal";
+        petal.innerText = icons[Math.floor(Math.random() * icons.length)];
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+        document.body.appendChild(petal);
+        setTimeout(() => petal.remove(), 10000);
+      }
+    }
+
+    // Câu chúc thay đổi liên tục
+    const blessings = [
+      "🌸 Chúc bé luôn vui vẻ và yêu đời!",
+      "💖 Mong điều tốt đẹp nhất sẽ đến với em!",
+      "🌟 Hôm nay cô bé sẽ tỏa sáng như ánh nắng!",
+      "🎉 Chúc một ngày tràn đầy năng lượng tích cực!",
+      "✨ Thành công sẽ luôn đồng hành cùng  cục vàng"
+      ];
+    let index = 0;
+    setInterval(() => {
+      document.getElementById("blessingText").textContent = blessings[index];
+      index = (index + 1) % blessings.length;
+    }, 7000);
+  </script>
+
+</body>
+</html>
